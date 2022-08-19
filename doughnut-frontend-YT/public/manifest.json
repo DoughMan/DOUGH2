@@ -1,0 +1,16 @@
+{
+  "short_name": "DoughnutSwap",
+  "name": "DoughnutSwap",
+  "description": "Farm & stack DOUGH with Doughnut LP Tokens",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "256x256"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
