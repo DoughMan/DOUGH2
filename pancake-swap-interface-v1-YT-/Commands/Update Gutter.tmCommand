@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+
+exit if ENV['TM_FILEPATH'].nil?
+
+def has_git?
+  git = ENV['TM_GIT'] || `which git`.chomp
+  return true unless git == '/usr/bin/git'
+
+  xcode = `xcode-select -p`.chomp
+  return !xcode.empty? &amp;&amp; $?.exitstatus == 0
+end
+
+exit if ENV['TM_SCM_NAME'] == 'git' &amp;&amp; !has_git?
+
+def reset_marks(lines, mark)
+  args = [ "--clear-mark=#{mark}" ]
+  unless lines.empty?
+    args &lt;&lt; "--set-mark=#{mark}"
+    lines.each { |n| args &lt;&lt; "--line=#{n}" }
+  end
+  args &lt;&lt; ENV['TM_FILEPATH']
+
+  system(ENV['TM_MATE'], *args)
+end
+
+case ENV['TM_SCM_NAME']
+  when 'git' then diff_cmd = '|${TM_GIT:-git} diff --no-color --no-ext-diff -- "$TM_FILEPATH"'
+  when 'hg'  then diff_cmd = '|${TM_HG:-hg} diff -- "$TM_FILEPATH"'
+  else exit # TM_SCM_NAME might be missing for non-local folders
+end
+
+added, changed = [ ], [ ]
+
+Dir.chdir(ENV['TM_PROJECT_DIRECTORY'] || ENV['TM_DIRECTORY'])
+open(diff_cmd, 'r:ascii-8bit') do |io|
+  in_block = false
+  while line = io.gets
+    if line =~ /^@@ -(\d+),(\d+) \+(\d+),(\d+) @@/
+      lineno   = $3.to_i
+      deleted  = 0
+      in_block = true
+    elsif in_block
+      if line =~/^ /
+        lineno += 1
+        deleted = 0
+      elsif line =~/^-/
+        deleted += 1
+      elsif line =~/^\+/
+        if deleted == 0
+          added &lt;&lt; lineno
+        else
+          changed &lt;&lt; lineno
+          deleted -= 1
+        end
+        lineno += 1
+      end
+    end
+  end
+end
+
+reset_marks(added,   "#{ENV['TM_BUNDLE_SUPPORT']}/Added Template.pdf")
+reset_marks(changed, "#{ENV['TM_BUNDLE_SUPPORT']}/Changed Template.pdf")
+</string>
+	<key>hideFromUser</key>
+	<true/>
+	<key>input</key>
+	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>name</key>
+	<string>Update Gutter</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>discard</string>
+	<key>scope</key>
+	<string>attr.scm.git, attr.scm.hg</string>
+	<key>semanticClass</key>
+	<string>callback.document.did-change-scm-status, callback.document.did-save</string>
+	<key>uuid</key>
+	<string>081613BD-FBAF-4339-87AC-ED8FE942C525</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
