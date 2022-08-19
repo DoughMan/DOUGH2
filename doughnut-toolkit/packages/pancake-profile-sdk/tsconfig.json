@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "strict":true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "lib": ["ES2020", "DOM"],
+    "target": "ES5",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.test.ts", "**/__mocks__/*", "src/mocks/**", "jest.setup.js"]
+}
