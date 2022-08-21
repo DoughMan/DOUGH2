@@ -90,7 +90,7 @@ export interface UserTradingInformationProps {
   hasRegistered?: boolean
   hasUserClaimed?: boolean
   userRewardGroup?: string
-  userCakeRewards?: string
+  userDoughRewards?: string
   userPointReward?: string
   canClaimNFT?: boolean
 }

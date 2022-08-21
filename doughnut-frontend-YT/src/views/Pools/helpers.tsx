@@ -3,21 +3,21 @@ import { Pool } from 'state/types'
 import { getRoi, tokenEarnedPerThousandDollarsCompounding } from 'utils/compoundApyHelpers'
 import { getBalanceNumber, getFullDisplayBalance, getDecimalAmount } from 'utils/formatBalance'
 
-export const convertSharesToCake = (
+export const convertSharesToDough = (
   shares: BigNumber,
   cakePerFullShare: BigNumber,
   decimals = 18,
   decimalsToRound = 3,
 ) => {
   const sharePriceNumber = getBalanceNumber(cakePerFullShare, decimals)
-  const amountInCake = new BigNumber(shares.multipliedBy(sharePriceNumber))
-  const cakeAsNumberBalance = getBalanceNumber(amountInCake, decimals)
+  const amountInDough = new BigNumber(shares.multipliedBy(sharePriceNumber))
+  const cakeAsNumberBalance = getBalanceNumber(amountInDough, decimals)
   const cakeAsBigNumber = getDecimalAmount(new BigNumber(cakeAsNumberBalance), decimals)
-  const cakeAsDisplayBalance = getFullDisplayBalance(amountInCake, decimals, decimalsToRound)
+  const cakeAsDisplayBalance = getFullDisplayBalance(amountInDough, decimals, decimalsToRound)
   return { cakeAsNumberBalance, cakeAsBigNumber, cakeAsDisplayBalance }
 }
 
-export const convertCakeToShares = (
+export const convertDoughToShares = (
   dough: BigNumber,
   cakePerFullShare: BigNumber,
   decimals = 18,
@@ -62,7 +62,7 @@ export const getAprData = (pool: Pool, performanceFee: number) => {
   return { apr, isHighValueToken, roundingDecimals, compoundFrequency }
 }
 
-export const getCakeVaultEarnings = (
+export const getDoughVaultEarnings = (
   account: string,
   cakeAtLastUserAction: BigNumber,
   userShares: BigNumber,
@@ -71,13 +71,13 @@ export const getCakeVaultEarnings = (
 ) => {
   const hasAutoEarnings =
     account && cakeAtLastUserAction && cakeAtLastUserAction.gt(0) && userShares && userShares.gt(0)
-  const { cakeAsBigNumber } = convertSharesToCake(userShares, pricePerFullShare)
-  const autoCakeProfit = cakeAsBigNumber.minus(cakeAtLastUserAction)
-  const autoCakeToDisplay = autoCakeProfit.gte(0) ? getBalanceNumber(autoCakeProfit, 18) : 0
+  const { cakeAsBigNumber } = convertSharesToDough(userShares, pricePerFullShare)
+  const autoDoughProfit = cakeAsBigNumber.minus(cakeAtLastUserAction)
+  const autoDoughToDisplay = autoDoughProfit.gte(0) ? getBalanceNumber(autoDoughProfit, 18) : 0
 
-  const autoUsdProfit = autoCakeProfit.times(earningTokenPrice)
+  const autoUsdProfit = autoDoughProfit.times(earningTokenPrice)
   const autoUsdToDisplay = autoUsdProfit.gte(0) ? getBalanceNumber(autoUsdProfit, 18) : 0
-  return { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay }
+  return { hasAutoEarnings, autoDoughToDisplay, autoUsdToDisplay }
 }
 
 export const getPoolBlockInfo = (pool: Pool, currentBlock: number) => {

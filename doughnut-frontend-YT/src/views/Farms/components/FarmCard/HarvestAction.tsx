@@ -8,7 +8,7 @@ import { useHarvest } from 'hooks/useHarvest'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { useWeb3React } from '@web3-react/core'
-import { usePriceCakeBusd } from 'state/hooks'
+import { usePriceDoughBusd } from 'state/hooks'
 import CardBusdValue from '../../../Home/components/CardBusdValue'
 
 interface FarmCardActionsProps {
@@ -21,7 +21,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   const { t } = useTranslation()
   const [pendingTx, setPendingTx] = useState(false)
   const { onReward } = useHarvest(pid)
-  const cakePrice = usePriceCakeBusd()
+  const cakePrice = usePriceDoughBusd()
   const dispatch = useAppDispatch()
   const rawEarningsBalance = account ? getBalanceAmount(earnings) : BIG_ZERO
   const displayBalance = rawEarningsBalance.toFixed(3, BigNumber.ROUND_DOWN)

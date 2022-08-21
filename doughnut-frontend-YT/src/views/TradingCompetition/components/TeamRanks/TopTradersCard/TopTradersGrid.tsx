@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { LeaderboardDataItem } from '../../../types'
 import GridItem from './GridItem'
 import ExpandedGridItem from './ExpandedGridItem'
-import { LeaderboardStorm, LeaderboardFlippers, LeaderboardCakers } from '../../../svgs'
+import { LeaderboardStorm, LeaderboardFlippers, LeaderboardDoughrs } from '../../../svgs'
 
 const SkeletonLoader = () => {
   return (
@@ -39,7 +39,7 @@ const ExpandedWrapper = styled.div`
 const TopTradersGrid: React.FC<{ data?: LeaderboardDataItem[]; isExpanded: boolean }> = ({ data, isExpanded }) => {
   const topFive = data && data.slice(0, 5)
   const nextTwenty = data && data.slice(5, 20)
-  const teamImages = [<LeaderboardStorm />, <LeaderboardFlippers />, <LeaderboardCakers />]
+  const teamImages = [<LeaderboardStorm />, <LeaderboardFlippers />, <LeaderboardDoughrs />]
 
   return (
     <Box>

@@ -402,7 +402,7 @@
     "name": "lotteries",
     "outputs": [
       {
-        "internalType": "enum PancakeSwapLottery.Status",
+        "internalType": "enum DoughnutSwapLottery.Status",
         "name": "status",
         "type": "uint8"
       },
@@ -418,7 +418,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "priceTicketInCake",
+        "name": "priceTicketInDough",
         "type": "uint256"
       },
       {
@@ -443,7 +443,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "amountCollectedInCake",
+        "name": "amountCollectedInDough",
         "type": "uint256"
       },
       {
@@ -572,7 +572,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "_priceTicketInCake",
+        "name": "_priceTicketInDough",
         "type": "uint256"
       },
       {

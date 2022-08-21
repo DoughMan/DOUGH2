@@ -1,5 +1,5 @@
 import { ReactText } from 'react'
-import { usePriceCakeBusd } from 'state/hooks'
+import { usePriceDoughBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import easterPrizes from 'config/constants/trading-competition/easter'
 import BigNumber from 'bignumber.js'
@@ -8,13 +8,13 @@ export const localiseTradingVolume = (value: number, decimals = 0) => {
   return value.toLocaleString('en-US', { maximumFractionDigits: decimals })
 }
 
-export const useCompetitionCakeRewards = (userCakeReward: ReactText) => {
-  const cakeAsBigNumber = new BigNumber(userCakeReward as string)
+export const useCompetitionDoughRewards = (userDoughReward: ReactText) => {
+  const cakeAsBigNumber = new BigNumber(userDoughReward as string)
   const cakeBalance = getBalanceNumber(cakeAsBigNumber)
-  const cakePriceBusd = usePriceCakeBusd()
+  const cakePriceBusd = usePriceDoughBusd()
   return {
     cakeReward: cakeBalance,
-    dollarValueOfCakeReward: cakePriceBusd.gt(0) ? cakeBalance * cakePriceBusd.toNumber() : null,
+    dollarValueOfDoughReward: cakePriceBusd.gt(0) ? cakeBalance * cakePriceBusd.toNumber() : null,
   }
 }
 

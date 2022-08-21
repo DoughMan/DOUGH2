@@ -6,16 +6,16 @@ import { useWeb3React } from '@web3-react/core'
 import { BASE_EXCHANGE_URL } from 'config'
 import { useAppDispatch } from 'state'
 import { BIG_TEN } from 'utils/bigNumber'
-import { useCakeVault, usePriceCakeBusd } from 'state/hooks'
-import { useCakeVaultContract } from 'hooks/useContract'
+import { useDoughVault, usePriceDoughBusd } from 'state/hooks'
+import { useDoughVaultContract } from 'hooks/useContract'
 import useTheme from 'hooks/useTheme'
 import useWithdrawalFeeTimer from 'hooks/cakeVault/useWithdrawalFeeTimer'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
-import { fetchCakeVaultUserData } from 'state/pools'
+import { fetchDoughVaultUserData } from 'state/pools'
 import { Pool } from 'state/types'
-import { convertCakeToShares } from '../../helpers'
+import { convertDoughToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
 
 interface VaultStakeModalProps {
@@ -33,11 +33,11 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
   const dispatch = useAppDispatch()
   const { stakingToken } = pool
   const { account } = useWeb3React()
-  const cakeVaultContract = useCakeVaultContract()
+  const cakeVaultContract = useDoughVaultContract()
   const {
     userData: { lastDepositedTime, userShares },
     pricePerFullShare,
-  } = useCakeVault()
+  } = useDoughVault()
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
@@ -45,7 +45,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
   const [stakeAmount, setStakeAmount] = useState('')
   const [percent, setPercent] = useState(0)
   const { hasUnstakingFee } = useWithdrawalFeeTimer(parseInt(lastDepositedTime, 10), userShares)
-  const cakePriceBusd = usePriceCakeBusd()
+  const cakePriceBusd = usePriceDoughBusd()
   const usdValueStaked =
     cakePriceBusd.gt(0) && stakeAmount ? formatNumber(new BigNumber(stakeAmount).times(cakePriceBusd).toNumber()) : ''
 
@@ -73,7 +73,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
 
   const handleWithdrawal = async (convertedStakeAmount: BigNumber) => {
     setPendingTx(true)
-    const shareStakeToWithdraw = convertCakeToShares(convertedStakeAmount, pricePerFullShare)
+    const shareStakeToWithdraw = convertDoughToShares(convertedStakeAmount, pricePerFullShare)
     // trigger withdrawAll function if the withdrawal will leave 0.000001 DOUGH or less
     const triggerWithdrawAllThreshold = new BigNumber(1000000000000)
     const sharesRemaining = userShares.minus(shareStakeToWithdraw.sharesAsBigNumber)
@@ -90,7 +90,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
           toastSuccess(t('Unstaked!'), t('Your earnings have also been harvested to your wallet'))
           setPendingTx(false)
           onDismiss()
-          dispatch(fetchCakeVaultUserData({ account }))
+          dispatch(fetchDoughVaultUserData({ account }))
         })
         .on('error', (error) => {
           console.error(error)
@@ -111,7 +111,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
           toastSuccess(t('Unstaked!'), t('Your earnings have also been harvested to your wallet'))
           setPendingTx(false)
           onDismiss()
-          dispatch(fetchCakeVaultUserData({ account }))
+          dispatch(fetchDoughVaultUserData({ account }))
         })
         .on('error', (error) => {
           console.error(error)
@@ -135,7 +135,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         toastSuccess(t('Staked!'), t('Your funds have been staked in the pool'))
         setPendingTx(false)
         onDismiss()
-        dispatch(fetchCakeVaultUserData({ account }))
+        dispatch(fetchDoughVaultUserData({ account }))
       })
       .on('error', (error) => {
         console.error(error)

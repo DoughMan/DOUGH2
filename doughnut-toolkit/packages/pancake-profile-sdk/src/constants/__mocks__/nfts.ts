@@ -5,7 +5,7 @@ import { IPFS_GATEWAY } from "../common";
 // and also not rely in tests on any value changes in the future
 
 export const nftSources: NftSource = {
-  [NftType.PANCAKE]: {
+  [NftType.PANDOUGH]: {
     address: {
       56: "0xDf7952B35f24aCF7fC0487D01c8d5690a60DBa07",
       97: "0x60935F36e4631F73f0f407e68642144e07aC7f5E",
@@ -48,7 +48,7 @@ const Nfts: Nft[] = [
     },
     sortOrder: 999,
     identifier: "sleepy",
-    type: NftType.PANCAKE,
+    type: NftType.PANDOUGH,
     variationId: 5,
   },
   {
@@ -63,7 +63,7 @@ const Nfts: Nft[] = [
     },
     sortOrder: 999,
     identifier: "swapsies",
-    type: NftType.PANCAKE,
+    type: NftType.PANDOUGH,
     variationId: 0,
   },
 ];

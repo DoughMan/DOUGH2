@@ -26,8 +26,8 @@ const CardMidContent = styled(Heading).attrs({ scale: 'xl' })`
   line-height: 44px;
 `
 
-const activeNonCakePools = pools.filter((pool) => !pool.isFinished && !pool.earningToken.symbol.includes('DOUGH'))
-const latestPools: Pool[] = orderBy(activeNonCakePools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
+const activeNonDoughPools = pools.filter((pool) => !pool.isFinished && !pool.earningToken.symbol.includes('DOUGH'))
+const latestPools: Pool[] = orderBy(activeNonDoughPools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
 // Always include DOUGH
 const assets = ['DOUGH', ...latestPools.map((pool) => pool.earningToken.symbol)].join(', ')
 

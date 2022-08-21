@@ -11,7 +11,7 @@ import {
   getPancakeRabbitsAddress,
   getBunnyFactoryAddress,
   getBunnySpecialAddress,
-  getCakeAddress,
+  getDoughAddress,
   getLotteryAddress,
   getLotteryTicketAddress,
   getLotteryV2Address,
@@ -20,7 +20,7 @@ import {
   getClaimRefundAddress,
   getTradingCompetitionAddress,
   getEasterNftAddress,
-  getCakeVaultAddress,
+  getDoughVaultAddress,
   getPredictionsAddress,
   getChainlinkOracleAddress,
 } from 'utils/addressHelpers'
@@ -97,8 +97,8 @@ export const getSouschefV2Contract = (id: number, web3?: Web3) => {
 export const getPointCenterIfoContract = (web3?: Web3) => {
   return getContract(pointCenterIfo, getPointCenterIfoAddress(), web3)
 }
-export const getCakeContract = (web3?: Web3) => {
-  return getContract(cakeAbi, getCakeAddress(), web3)
+export const getDoughContract = (web3?: Web3) => {
+  return getContract(cakeAbi, getDoughAddress(), web3)
 }
 export const getProfileContract = (web3?: Web3) => {
   return getContract(profileABI, getPancakeProfileAddress(), web3)
@@ -133,8 +133,8 @@ export const getTradingCompetitionContract = (web3?: Web3) => {
 export const getEasterNftContract = (web3?: Web3) => {
   return getContract(easterNftAbi, getEasterNftAddress(), web3)
 }
-export const getCakeVaultContract = (web3?: Web3) => {
-  return getContract(cakeVaultAbi, getCakeVaultAddress(), web3)
+export const getDoughVaultContract = (web3?: Web3) => {
+  return getContract(cakeVaultAbi, getDoughVaultAddress(), web3)
 }
 export const getPredictionsContract = (web3?: Web3) => {
   return getContract(predictionsAbi, getPredictionsAddress(), web3)

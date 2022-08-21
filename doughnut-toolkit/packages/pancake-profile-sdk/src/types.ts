@@ -36,7 +36,7 @@ export type Nft = {
 };
 
 export enum NftType {
-  PANCAKE = "pancake",
+  PANDOUGH = "pancake",
   MIXIE = "mixie",
 }
 

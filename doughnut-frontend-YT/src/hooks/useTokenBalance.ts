@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { getBep20Contract, getCakeContract } from 'utils/contractHelpers'
+import { getBep20Contract, getDoughContract } from 'utils/contractHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import useWeb3 from './useWeb3'
 import useRefresh from './useRefresh'
@@ -57,7 +57,7 @@ export const useTotalSupply = () => {
 
   useEffect(() => {
     async function fetchTotalSupply() {
-      const cakeContract = getCakeContract()
+      const cakeContract = getDoughContract()
       const supply = await cakeContract.methods.totalSupply().call()
       setTotalSupply(new BigNumber(supply))
     }

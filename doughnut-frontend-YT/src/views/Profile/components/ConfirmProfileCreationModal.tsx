@@ -3,7 +3,7 @@ import { Modal, Flex, Text } from '@pancakeswap/uikit'
 import { useAppDispatch } from 'state'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
-import { useCake, useProfile } from 'hooks/useContract'
+import { useDough, useProfile } from 'hooks/useContract'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { fetchProfile } from 'state/profile'
 import useToast from 'hooks/useToast'
@@ -16,7 +16,7 @@ interface Props {
   selectedNft: State['selectedNft']
   account: string
   teamId: number
-  minimumCakeRequired: BigNumber
+  minimumDoughRequired: BigNumber
   allowance: BigNumber
   onDismiss?: () => void
 }
@@ -25,7 +25,7 @@ const ConfirmProfileCreationModal: React.FC<Props> = ({
   account,
   teamId,
   selectedNft,
-  minimumCakeRequired,
+  minimumDoughRequired,
   allowance,
   onDismiss,
 }) => {
@@ -33,7 +33,7 @@ const ConfirmProfileCreationModal: React.FC<Props> = ({
   const profileContract = useProfile()
   const dispatch = useAppDispatch()
   const { toastSuccess } = useToast()
-  const cakeContract = useCake()
+  const cakeContract = useDough()
 
   const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove, handleConfirm } =
     useApproveConfirmTransaction({
@@ -41,7 +41,7 @@ const ConfirmProfileCreationModal: React.FC<Props> = ({
         try {
           const response = await cakeContract.methods.allowance(account, profileContract.options.address).call()
           const currentAllowance = new BigNumber(response)
-          return currentAllowance.gte(minimumCakeRequired)
+          return currentAllowance.gte(minimumDoughRequired)
         } catch (error) {
           return false
         }

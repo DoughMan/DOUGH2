@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import useWeb3 from 'hooks/useWeb3'
 import {
   getBep20Contract,
-  getCakeContract,
+  getDoughContract,
   getBunnyFactoryContract,
   getBunnySpecialContract,
   getPancakeRabbitContract,
@@ -18,7 +18,7 @@ import {
   getTradingCompetitionContract,
   getEasterNftContract,
   getErc721Contract,
-  getCakeVaultContract,
+  getDoughVaultContract,
   getPredictionsContract,
   getChainlinkOracleContract,
   getSouschefV2Contract,
@@ -52,9 +52,9 @@ export const useERC721 = (address: string) => {
   return useMemo(() => getErc721Contract(address, web3), [address, web3])
 }
 
-export const useCake = () => {
+export const useDough = () => {
   const web3 = useWeb3()
-  return useMemo(() => getCakeContract(web3), [web3])
+  return useMemo(() => getDoughContract(web3), [web3])
 }
 
 export const useBunnyFactory = () => {
@@ -127,9 +127,9 @@ export const useEasterNftContract = () => {
   return useMemo(() => getEasterNftContract(web3), [web3])
 }
 
-export const useCakeVaultContract = () => {
+export const useDoughVaultContract = () => {
   const web3 = useWeb3()
-  return useMemo(() => getCakeVaultContract(web3), [web3])
+  return useMemo(() => getDoughVaultContract(web3), [web3])
 }
 
 export const usePredictionsContract = () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, Flex, useTooltip, TooltipText } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { useCakeVault } from 'state/hooks'
+import { useDoughVault } from 'state/hooks'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
 
 interface FeeSummaryProps {
@@ -13,9 +13,9 @@ const FeeSummary: React.FC<FeeSummaryProps> = ({ stakingTokenSymbol, stakeAmount
   const { t } = useTranslation()
   const {
     fees: { withdrawalFee },
-  } = useCakeVault()
+  } = useDoughVault()
   const feeAsDecimal = withdrawalFee / 100
-  const feeInCake = (parseFloat(stakeAmount) * (feeAsDecimal / 100)).toFixed(4)
+  const feeInDough = (parseFloat(stakeAmount) * (feeAsDecimal / 100)).toFixed(4)
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
       <Text bold mb="4px">
@@ -38,7 +38,7 @@ const FeeSummary: React.FC<FeeSummaryProps> = ({ stakingTokenSymbol, stakeAmount
           {t('Unstaking Fee')}
         </TooltipText>
         <Text fontSize="14px">
-          {stakeAmount ? feeInCake : '-'} {stakingTokenSymbol}
+          {stakeAmount ? feeInDough : '-'} {stakingTokenSymbol}
         </Text>
       </Flex>
       <UnstakingFeeCountdownRow />

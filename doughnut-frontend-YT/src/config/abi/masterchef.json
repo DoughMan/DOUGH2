@@ -2,7 +2,7 @@
   {
     "inputs": [
       {
-        "internalType": "contract CakeToken",
+        "internalType": "contract DoughToken",
         "name": "_cake",
         "type": "address"
       },
@@ -165,7 +165,7 @@
     "name": "dough",
     "outputs": [
       {
-        "internalType": "contract CakeToken",
+        "internalType": "contract DoughToken",
         "name": "",
         "type": "address"
       }
@@ -352,7 +352,7 @@
         "type": "address"
       }
     ],
-    "name": "pendingCake",
+    "name": "pendingDough",
     "outputs": [
       {
         "internalType": "uint256",
@@ -390,7 +390,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "accCakePerShare",
+        "name": "accDoughPerShare",
         "type": "uint256"
       }
     ],

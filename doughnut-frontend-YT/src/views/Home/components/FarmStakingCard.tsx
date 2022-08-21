@@ -7,8 +7,8 @@ import { useTranslation } from 'contexts/Localization'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import { useMasterchef } from 'hooks/useContract'
 import UnlockButton from 'components/UnlockButton'
-import CakeHarvestBalance from './CakeHarvestBalance'
-import CakeWalletBalance from './CakeWalletBalance'
+import DoughHarvestBalance from './DoughHarvestBalance'
+import DoughWalletBalance from './DoughWalletBalance'
 
 const StyledFarmStakingCard = styled(Card)`
   background-image: url('/images/dough-bg.svg');
@@ -65,11 +65,11 @@ const FarmedStakingCard = () => {
         <CardImage src="/images/dough.svg" alt="dough logo" width={64} height={64} />
         <Block>
           <Label>{t('DOUGH to Harvest')}:</Label>
-          <CakeHarvestBalance />
+          <DoughHarvestBalance />
         </Block>
         <Block>
           <Label>{t('DOUGH in Wallet')}:</Label>
-          <CakeWalletBalance />
+          <DoughWalletBalance />
         </Block>
         <Actions>
           {account ? (

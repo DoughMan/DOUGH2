@@ -5,7 +5,7 @@ import { DEFAULT_GAS_LIMIT } from 'config'
 import styled from 'styled-components'
 import { Modal, Text, Flex, Button, HelpIcon, AutoRenewIcon, useTooltip } from '@pancakeswap/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useCakeVaultContract } from 'hooks/useContract'
+import { useDoughVaultContract } from 'hooks/useContract'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
@@ -15,7 +15,7 @@ import Balance from 'components/Balance'
 interface BountyModalProps {
   cakeBountyToDisplay: number
   dollarBountyToDisplay: number
-  totalPendingCakeHarvest: BigNumber
+  totalPendingDoughHarvest: BigNumber
   callFee: number
   onDismiss?: () => void
   TooltipComponent: React.ElementType
@@ -31,7 +31,7 @@ const Divider = styled.div`
 const BountyModal: React.FC<BountyModalProps> = ({
   cakeBountyToDisplay,
   dollarBountyToDisplay,
-  totalPendingCakeHarvest,
+  totalPendingDoughHarvest,
   callFee,
   onDismiss,
   TooltipComponent,
@@ -40,10 +40,10 @@ const BountyModal: React.FC<BountyModalProps> = ({
   const { account } = useWeb3React()
   const { theme } = useTheme()
   const { toastError, toastSuccess } = useToast()
-  const cakeVaultContract = useCakeVaultContract()
+  const cakeVaultContract = useDoughVaultContract()
   const [pendingTx, setPendingTx] = useState(false)
   const callFeeAsDecimal = callFee / 100
-  const totalYieldToDisplay = getBalanceNumber(totalPendingCakeHarvest, 18)
+  const totalYieldToDisplay = getBalanceNumber(totalPendingDoughHarvest, 18)
   const { targetRef, tooltip, tooltipVisible } = useTooltip(<TooltipComponent />, {
     placement: 'bottom',
     tooltipPadding: { right: 15 },

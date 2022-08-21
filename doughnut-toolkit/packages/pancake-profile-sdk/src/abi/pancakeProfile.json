@@ -8,17 +8,17 @@
       },
       {
         "internalType": "uint256",
-        "name": "_numberCakeToReactivate",
+        "name": "_numberDoughToReactivate",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_numberCakeToRegister",
+        "name": "_numberDoughToRegister",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_numberCakeToUpdate",
+        "name": "_numberDoughToUpdate",
         "type": "uint256"
       }
     ],
@@ -561,21 +561,21 @@
   },
   {
     "inputs": [],
-    "name": "numberCakeToReactivate",
+    "name": "numberDoughToReactivate",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
-    "name": "numberCakeToRegister",
+    "name": "numberDoughToRegister",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
-    "name": "numberCakeToUpdate",
+    "name": "numberDoughToUpdate",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
@@ -685,21 +685,21 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_newNumberCakeToReactivate",
+        "name": "_newNumberDoughToReactivate",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_newNumberCakeToRegister",
+        "name": "_newNumberDoughToRegister",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_newNumberCakeToUpdate",
+        "name": "_newNumberDoughToUpdate",
         "type": "uint256"
       }
     ],
-    "name": "updateNumberCake",
+    "name": "updateNumberDough",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

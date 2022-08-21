@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton, useTooltip, Flex, Text } from '@pancakeswap/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { useWeb3React } from '@web3-react/core'
-import { useCakeVault } from 'state/hooks'
+import { useDoughVault } from 'state/hooks'
 import { Pool } from 'state/types'
 import Balance from 'components/Balance'
 import { useTranslation } from 'contexts/Localization'
@@ -14,11 +14,11 @@ import { PoolCategory } from 'config/constants/types'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getAddress } from 'utils/addressHelpers'
 import { useERC20 } from 'hooks/useContract'
-import { convertSharesToCake } from 'views/Pools/helpers'
+import { convertSharesToDough } from 'views/Pools/helpers'
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import StakeModal from '../../PoolCard/Modals/StakeModal'
-import VaultStakeModal from '../../CakeVaultCard/VaultStakeModal'
+import VaultStakeModal from '../../DoughVaultCard/VaultStakeModal'
 
 const IconButtonWrapper = styled.div`
   display: flex;
@@ -74,9 +74,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   const {
     userData: { userShares },
     pricePerFullShare,
-  } = useCakeVault()
+  } = useDoughVault()
 
-  const { cakeAsBigNumber, cakeAsNumberBalance } = convertSharesToCake(userShares, pricePerFullShare)
+  const { cakeAsBigNumber, cakeAsNumberBalance } = convertSharesToDough(userShares, pricePerFullShare)
   const hasSharesStaked = userShares && userShares.gt(0)
   const isVaultWithShares = isAutoVault && hasSharesStaked
   const stakedAutoDollarValue = getBalanceNumber(cakeAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals)

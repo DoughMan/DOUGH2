@@ -7,14 +7,14 @@ import { server, rest } from "../mocks/server";
 jest.mock("../constants/nfts");
 jest.mock("./contractHelpers");
 
-const PANCAKE_NFT_ADDRESS = "0xDf7952B35f24aCF7fC0487D01c8d5690a60DBa07";
+const PANDOUGH_NFT_ADDRESS = "0xDf7952B35f24aCF7fC0487D01c8d5690a60DBa07";
 const MIXIE_NFT_ADDRESS = "0xa251b5EAa9E67F2Bc8b33F33e20E91552Bf85566";
 const UNKNOWN_NFT_ADDRESS = "0xa111122229E67F2Bc8b33F33e20E915522221111";
 const MOCK_TOKEN_ID = 5;
 
 describe("collectibles", () => {
   it("getIdentifierKeyFromAddress returns proper identifier key", () => {
-    const pancakeIdentifierKey = getIdentifierKeyFromAddress(PANCAKE_NFT_ADDRESS, MAINNET_CHAIN_ID);
+    const pancakeIdentifierKey = getIdentifierKeyFromAddress(PANDOUGH_NFT_ADDRESS, MAINNET_CHAIN_ID);
     const mixieIdentifierKey = getIdentifierKeyFromAddress(MIXIE_NFT_ADDRESS, MAINNET_CHAIN_ID);
     expect(pancakeIdentifierKey).toBe("image");
     expect(mixieIdentifierKey).toBe("otherIdentifier");
@@ -38,7 +38,7 @@ describe("collectibles", () => {
   });
 
   it("getTokenUriData returns proper response", async () => {
-    const uriData = await getTokenUriData(PANCAKE_NFT_ADDRESS, MOCK_TOKEN_ID, web3NoAccount);
+    const uriData = await getTokenUriData(PANDOUGH_NFT_ADDRESS, MOCK_TOKEN_ID, web3NoAccount);
     expect(uriData).toEqual({
       name: "Sleepy",
       description: "Aww, looks like eating pancakes all day is tough work. Sweet dreams!",
@@ -58,13 +58,13 @@ describe("collectibles", () => {
         }
       )
     );
-    const uriData = await getTokenUriData(PANCAKE_NFT_ADDRESS, MOCK_TOKEN_ID, web3NoAccount);
+    const uriData = await getTokenUriData(PANDOUGH_NFT_ADDRESS, MOCK_TOKEN_ID, web3NoAccount);
     expect(uriData).toBeNull();
   });
 
   it("getNftByTokenId returns proper nft", async () => {
     const sleepyNft = nfts.find((nft) => nft.identifier === "sleepy");
-    const nft = await getNftByTokenId(PANCAKE_NFT_ADDRESS, MOCK_TOKEN_ID, web3NoAccount, MAINNET_CHAIN_ID);
+    const nft = await getNftByTokenId(PANDOUGH_NFT_ADDRESS, MOCK_TOKEN_ID, web3NoAccount, MAINNET_CHAIN_ID);
     expect(nft).toBe(sleepyNft);
   });
 
@@ -77,7 +77,7 @@ describe("collectibles", () => {
         }
       )
     );
-    const nft = await getNftByTokenId(PANCAKE_NFT_ADDRESS, MOCK_TOKEN_ID, web3NoAccount, MAINNET_CHAIN_ID);
+    const nft = await getNftByTokenId(PANDOUGH_NFT_ADDRESS, MOCK_TOKEN_ID, web3NoAccount, MAINNET_CHAIN_ID);
     expect(nft).toBe(null);
   });
 

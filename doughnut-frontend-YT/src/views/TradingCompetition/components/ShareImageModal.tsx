@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import FlippersShare from '../pngs/flippers-share.png'
 import StormShare from '../pngs/storm-share.png'
-import CakersShare from '../pngs/cakers-share.png'
+import DoughrsShare from '../pngs/cakers-share.png'
 import ProfileMask from '../pngs/share-profile-mask.png'
 import MedalGold from '../pngs/medals/medal-gold.png'
 import MedalSilver from '../pngs/medals/medal-silver.png'
@@ -61,7 +61,7 @@ const ShareImageModal: React.FC<YourScoreProps> = ({ onDismiss, profile, userLea
   }
 
   useEffect(() => {
-    const bgImages = [StormShare, FlippersShare, CakersShare]
+    const bgImages = [StormShare, FlippersShare, DoughrsShare]
     const bgImagEl = new Image()
     bgImagEl.src = bgImages[profile.teamId - 1]
     bgImagEl.onload = () => setBgImage(bgImagEl)

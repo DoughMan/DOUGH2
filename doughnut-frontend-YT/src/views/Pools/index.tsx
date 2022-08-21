@@ -8,7 +8,7 @@ import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
-import { usePools, useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData, useCakeVault } from 'state/hooks'
+import { usePools, useFetchDoughVault, useFetchPublicPoolsData, usePollFarmsData, useDoughVault } from 'state/hooks'
 import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -17,13 +17,13 @@ import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
 import { Pool } from 'state/types'
 import PoolCard from './components/PoolCard'
-import CakeVaultCard from './components/CakeVaultCard'
+import DoughVaultCard from './components/DoughVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import BountyCard from './components/BountyCard'
 import HelpButton from './components/HelpButton'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
-import { getAprData, getCakeVaultEarnings } from './helpers'
+import { getAprData, getDoughVaultEarnings } from './helpers'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -66,8 +66,8 @@ const Pools: React.FC = () => {
     userData: { cakeAtLastUserAction, userShares },
     fees: { performanceFee },
     pricePerFullShare,
-    totalCakeInVault,
-  } = useCakeVault()
+    totalDoughInVault,
+  } = useDoughVault()
   const accountHasVaultShares = userShares && userShares.gt(0)
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
@@ -102,7 +102,7 @@ const Pools: React.FC = () => {
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   usePollFarmsData()
-  useFetchCakeVault()
+  useFetchDoughVault()
   useFetchPublicPoolsData()
 
   useEffect(() => {
@@ -150,7 +150,7 @@ const Pools: React.FC = () => {
               return 0
             }
             return pool.isAutoVault
-              ? getCakeVaultEarnings(
+              ? getDoughVaultEarnings(
                   account,
                   cakeAtLastUserAction,
                   userShares,
@@ -164,7 +164,7 @@ const Pools: React.FC = () => {
       case 'totalStaked':
         return orderBy(
           poolsToSort,
-          (pool: Pool) => (pool.isAutoVault ? totalCakeInVault.toNumber() : pool.totalStaked.toNumber()),
+          (pool: Pool) => (pool.isAutoVault ? totalDoughInVault.toNumber() : pool.totalStaked.toNumber()),
           'desc',
         )
       default:
@@ -194,7 +194,7 @@ const Pools: React.FC = () => {
     <CardLayout>
       {poolsToShow().map((pool) =>
         pool.isAutoVault ? (
-          <CakeVaultCard key="auto-dough" pool={pool} showStakedOnly={stakedOnly} />
+          <DoughVaultCard key="auto-dough" pool={pool} showStakedOnly={stakedOnly} />
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),

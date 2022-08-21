@@ -4,10 +4,10 @@ import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
-import { getCakeAddress } from 'utils/addressHelpers'
+import { getDoughAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
 
-const StyledCakeStats = styled(Card)`
+const StyledDoughStats = styled(Card)`
   margin-left: auto;
   margin-right: auto;
 `
@@ -20,14 +20,14 @@ const Row = styled.div`
   margin-bottom: 8px;
 `
 
-const CakeStats = () => {
+const DoughStats = () => {
   const { t } = useTranslation()
   const totalSupply = useTotalSupply()
-  const burnedBalance = getBalanceNumber(useBurnedBalance(getCakeAddress()))
+  const burnedBalance = getBalanceNumber(useBurnedBalance(getDoughAddress()))
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
 
   return (
-    <StyledCakeStats>
+    <StyledDoughStats>
       <CardBody>
         <Heading scale="xl" mb="24px">
           {t('Dough Stats')}
@@ -45,8 +45,8 @@ const CakeStats = () => {
           <CardValue fontSize="14px" decimals={0} value={20} />
         </Row>
       </CardBody>
-    </StyledCakeStats>
+    </StyledDoughStats>
   )
 }
 
-export default CakeStats
+export default DoughStats

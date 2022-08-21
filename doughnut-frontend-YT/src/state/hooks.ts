@@ -16,9 +16,9 @@ import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
-  fetchCakeVaultPublicData,
-  fetchCakeVaultUserData,
-  fetchCakeVaultFees,
+  fetchDoughVaultPublicData,
+  fetchDoughVaultUserData,
+  fetchDoughVaultFees,
   setBlock,
 } from './actions'
 import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, FarmsState } from './types'
@@ -182,31 +182,31 @@ export const usePoolFromPid = (sousId: number): Pool => {
   return transformPool(pool)
 }
 
-export const useFetchCakeVault = () => {
+export const useFetchDoughVault = () => {
   const { account } = useWeb3React()
   const { fastRefresh } = useRefresh()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(fetchCakeVaultPublicData())
+    dispatch(fetchDoughVaultPublicData())
   }, [dispatch, fastRefresh])
 
   useEffect(() => {
-    dispatch(fetchCakeVaultUserData({ account }))
+    dispatch(fetchDoughVaultUserData({ account }))
   }, [dispatch, fastRefresh, account])
 
   useEffect(() => {
-    dispatch(fetchCakeVaultFees())
+    dispatch(fetchDoughVaultFees())
   }, [dispatch])
 }
 
-export const useCakeVault = () => {
+export const useDoughVault = () => {
   const {
     totalShares: totalSharesAsString,
     pricePerFullShare: pricePerFullShareAsString,
-    totalCakeInVault: totalCakeInVaultAsString,
-    estimatedCakeBountyReward: estimatedCakeBountyRewardAsString,
-    totalPendingCakeHarvest: totalPendingCakeHarvestAsString,
+    totalDoughInVault: totalDoughInVaultAsString,
+    estimatedDoughBountyReward: estimatedDoughBountyRewardAsString,
+    totalPendingDoughHarvest: totalPendingDoughHarvestAsString,
     fees: { performanceFee, callFee, withdrawalFee, withdrawalFeePeriod },
     userData: {
       isLoading,
@@ -217,13 +217,13 @@ export const useCakeVault = () => {
     },
   } = useSelector((state: State) => state.pools.cakeVault)
 
-  const estimatedCakeBountyReward = useMemo(() => {
-    return new BigNumber(estimatedCakeBountyRewardAsString)
-  }, [estimatedCakeBountyRewardAsString])
+  const estimatedDoughBountyReward = useMemo(() => {
+    return new BigNumber(estimatedDoughBountyRewardAsString)
+  }, [estimatedDoughBountyRewardAsString])
 
-  const totalPendingCakeHarvest = useMemo(() => {
-    return new BigNumber(totalPendingCakeHarvestAsString)
-  }, [totalPendingCakeHarvestAsString])
+  const totalPendingDoughHarvest = useMemo(() => {
+    return new BigNumber(totalPendingDoughHarvestAsString)
+  }, [totalPendingDoughHarvestAsString])
 
   const totalShares = useMemo(() => {
     return new BigNumber(totalSharesAsString)
@@ -233,9 +233,9 @@ export const useCakeVault = () => {
     return new BigNumber(pricePerFullShareAsString)
   }, [pricePerFullShareAsString])
 
-  const totalCakeInVault = useMemo(() => {
-    return new BigNumber(totalCakeInVaultAsString)
-  }, [totalCakeInVaultAsString])
+  const totalDoughInVault = useMemo(() => {
+    return new BigNumber(totalDoughInVaultAsString)
+  }, [totalDoughInVaultAsString])
 
   const userShares = useMemo(() => {
     return new BigNumber(userSharesAsString)
@@ -248,9 +248,9 @@ export const useCakeVault = () => {
   return {
     totalShares,
     pricePerFullShare,
-    totalCakeInVault,
-    estimatedCakeBountyReward,
-    totalPendingCakeHarvest,
+    totalDoughInVault,
+    estimatedDoughBountyReward,
+    totalPendingDoughHarvest,
     fees: {
       performanceFee,
       callFee,
@@ -330,7 +330,7 @@ export const usePriceBnbBusd = (): BigNumber => {
   return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
 }
 
-export const usePriceCakeBusd = (): BigNumber => {
+export const usePriceDoughBusd = (): BigNumber => {
   const cakeBnbFarm = useFarmFromPid(251)
   return new BigNumber(cakeBnbFarm.token.busdPrice)
 }

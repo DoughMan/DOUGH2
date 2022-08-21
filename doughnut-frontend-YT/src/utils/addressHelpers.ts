@@ -8,7 +8,7 @@ export const getAddress = (address: Address): string => {
   return address[chainId] ? address[chainId] : address[MAINNET_CHAIN_ID]
 }
 
-export const getCakeAddress = () => {
+export const getDoughAddress = () => {
   return getAddress(tokens.dough.address)
 }
 export const getMasterChefAddress = () => {
@@ -53,7 +53,7 @@ export const getTradingCompetitionAddress = () => {
 export const getEasterNftAddress = () => {
   return getAddress(addresses.easterNft)
 }
-export const getCakeVaultAddress = () => {
+export const getDoughVaultAddress = () => {
   return getAddress(addresses.cakeVault)
 }
 export const getPredictionsAddress = () => {

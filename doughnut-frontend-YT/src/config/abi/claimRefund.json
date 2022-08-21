@@ -13,7 +13,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "_numberCake",
+        "name": "_numberDough",
         "type": "uint256"
       },
       {
@@ -91,7 +91,7 @@
   },
   {
     "inputs": [],
-    "name": "getCakeBack",
+    "name": "getDoughBack",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -117,7 +117,7 @@
   },
   {
     "inputs": [],
-    "name": "numberCake",
+    "name": "numberDough",
     "outputs": [
       {
         "internalType": "uint256",

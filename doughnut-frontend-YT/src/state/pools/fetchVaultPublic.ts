@@ -1,35 +1,35 @@
 import BigNumber from 'bignumber.js'
-import { convertSharesToCake } from 'views/Pools/helpers'
-import { getCakeVaultContract } from 'utils/contractHelpers'
+import { convertSharesToDough } from 'views/Pools/helpers'
+import { getDoughVaultContract } from 'utils/contractHelpers'
 import makeBatchRequest from 'utils/makeBatchRequest'
 
-const cakeVaultContract = getCakeVaultContract()
+const cakeVaultContract = getDoughVaultContract()
 
 export const fetchPublicVaultData = async () => {
   try {
-    const [sharePrice, shares, estimatedCakeBountyReward, totalPendingCakeHarvest] = await makeBatchRequest([
+    const [sharePrice, shares, estimatedDoughBountyReward, totalPendingDoughHarvest] = await makeBatchRequest([
       cakeVaultContract.methods.getPricePerFullShare().call,
       cakeVaultContract.methods.totalShares().call,
-      cakeVaultContract.methods.calculateHarvestCakeRewards().call,
-      cakeVaultContract.methods.calculateTotalPendingCakeRewards().call,
+      cakeVaultContract.methods.calculateHarvestDoughRewards().call,
+      cakeVaultContract.methods.calculateTotalPendingDoughRewards().call,
     ])
     const totalSharesAsBigNumber = new BigNumber(shares as string)
     const sharePriceAsBigNumber = new BigNumber(sharePrice as string)
-    const totalCakeInVaultEstimate = convertSharesToCake(totalSharesAsBigNumber, sharePriceAsBigNumber)
+    const totalDoughInVaultEstimate = convertSharesToDough(totalSharesAsBigNumber, sharePriceAsBigNumber)
     return {
       totalShares: totalSharesAsBigNumber.toJSON(),
       pricePerFullShare: sharePriceAsBigNumber.toJSON(),
-      totalCakeInVault: totalCakeInVaultEstimate.cakeAsBigNumber.toJSON(),
-      estimatedCakeBountyReward: new BigNumber(estimatedCakeBountyReward as string).toJSON(),
-      totalPendingCakeHarvest: new BigNumber(totalPendingCakeHarvest as string).toJSON(),
+      totalDoughInVault: totalDoughInVaultEstimate.cakeAsBigNumber.toJSON(),
+      estimatedDoughBountyReward: new BigNumber(estimatedDoughBountyReward as string).toJSON(),
+      totalPendingDoughHarvest: new BigNumber(totalPendingDoughHarvest as string).toJSON(),
     }
   } catch (error) {
     return {
       totalShares: null,
       pricePerFullShare: null,
-      totalCakeInVault: null,
-      estimatedCakeBountyReward: null,
-      totalPendingCakeHarvest: null,
+      totalDoughInVault: null,
+      estimatedDoughBountyReward: null,
+      totalPendingDoughHarvest: null,
     }
   }
 }

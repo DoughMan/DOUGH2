@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useMatchBreakpoints } from '@pancakeswap/uikit'
 import { Pool } from 'state/types'
-import { useCakeVault } from 'state/hooks'
+import { useDoughVault } from 'state/hooks'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import NameCell from './Cells/NameCell'
 import EarningsCell from './Cells/EarningsCell'
@@ -35,7 +35,7 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
 
   const {
     fees: { performanceFee },
-  } = useCakeVault()
+  } = useDoughVault()
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   return (

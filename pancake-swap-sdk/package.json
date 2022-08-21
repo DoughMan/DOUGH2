@@ -1,16 +1,16 @@
 {
-  "name": "@pancakeswap/sdk",
+  "name": "@doughnutswap/sdk",
   "license": "MIT",
   "version": "2.4.3",
-  "description": "🛠 An SDK for building applications on top of Pancakeswap.",
+  "description": "🛠 An SDK for building applications on top of doughnutswap.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/pancakeswap/pancake-swap-sdk.git",
+  "repository": "https://github.com/doughnutswap/doughnut-swap-sdk.git",
   "keywords": [
-    "pancakeswap",
+    "doughnutswap",
     "bsc"
   ],
   "module": "dist/sdk.esm.js",

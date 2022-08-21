@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { AutoRenewIcon, Button, Flex, InjectedModalProps, Text } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { useCake } from 'hooks/useContract'
+import { useDough } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import { useProfile } from 'state/hooks'
 import { getPancakeProfileAddress } from 'utils/addressHelpers'
@@ -10,19 +10,19 @@ import { getFullDisplayBalance } from 'utils/formatBalance'
 import useGetProfileCosts from 'hooks/useGetProfileCosts'
 import { UseEditProfileResponse } from './reducer'
 
-interface ApproveCakePageProps extends InjectedModalProps {
+interface ApproveDoughPageProps extends InjectedModalProps {
   goToChange: UseEditProfileResponse['goToChange']
 }
 
-const ApproveCakePage: React.FC<ApproveCakePageProps> = ({ goToChange, onDismiss }) => {
+const ApproveDoughPage: React.FC<ApproveDoughPageProps> = ({ goToChange, onDismiss }) => {
   const [isApproving, setIsApproving] = useState(false)
   const { profile } = useProfile()
   const { t } = useTranslation()
   const { account } = useWeb3React()
-  const { numberCakeToUpdate, numberCakeToReactivate } = useGetProfileCosts()
-  const cakeContract = useCake()
+  const { numberDoughToUpdate, numberDoughToReactivate } = useGetProfileCosts()
+  const cakeContract = useDough()
   const { toastError } = useToast()
-  const cost = profile.isActive ? numberCakeToUpdate : numberCakeToReactivate
+  const cost = profile.isActive ? numberDoughToUpdate : numberDoughToReactivate
 
   const handleApprove = () => {
     cakeContract.methods
@@ -67,4 +67,4 @@ const ApproveCakePage: React.FC<ApproveCakePageProps> = ({ goToChange, onDismiss
   )
 }
 
-export default ApproveCakePage
+export default ApproveDoughPage

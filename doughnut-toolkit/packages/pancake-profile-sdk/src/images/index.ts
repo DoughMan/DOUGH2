@@ -1,8 +1,8 @@
-export { default as chaoticCakersAlt } from "./chaotic-cakers-alt.png";
-export { default as chaoticCakersSm } from "./chaotic-cakers-sm.png";
-export { default as chaoticCakersMd } from "./chaotic-cakers-md.png";
-export { default as chaoticCakersLg } from "./chaotic-cakers-lg.png";
-export { default as chaoticCakersBg } from "./chaotic-cakers-bg.svg";
+export { default as chaoticDoughrsAlt } from "./chaotic-cakers-alt.png";
+export { default as chaoticDoughrsSm } from "./chaotic-cakers-sm.png";
+export { default as chaoticDoughrsMd } from "./chaotic-cakers-md.png";
+export { default as chaoticDoughrsLg } from "./chaotic-cakers-lg.png";
+export { default as chaoticDoughrsBg } from "./chaotic-cakers-bg.svg";
 
 export { default as fearsomeFlippersAlt } from "./fearsome-flippers-alt.png";
 export { default as fearsomeFlippersSm } from "./fearsome-flippers-sm.png";

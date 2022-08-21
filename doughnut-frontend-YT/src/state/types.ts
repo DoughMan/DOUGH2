@@ -85,19 +85,19 @@ export interface VaultUser {
   lastDepositedTime: string
   lastUserActionTime: string
 }
-export interface CakeVault {
+export interface DoughVault {
   totalShares?: string
   pricePerFullShare?: string
-  totalCakeInVault?: string
-  estimatedCakeBountyReward?: string
-  totalPendingCakeHarvest?: string
+  totalDoughInVault?: string
+  estimatedDoughBountyReward?: string
+  totalPendingDoughHarvest?: string
   fees?: VaultFees
   userData?: VaultUser
 }
 
 export interface PoolsState {
   data: Pool[]
-  cakeVault: CakeVault
+  cakeVault: DoughVault
   userDataLoaded: boolean
 }
 

@@ -16,7 +16,7 @@ import {
 import { useTranslation } from 'contexts/Localization'
 import { useTradingCompetitionContract } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
-import { useCompetitionCakeRewards, getRewardGroupAchievements } from '../../helpers'
+import { useCompetitionDoughRewards, getRewardGroupAchievements } from '../../helpers'
 import { CompetitionProps } from '../../types'
 import NftBunnies from '../../pngs/syrup-nft.png'
 
@@ -36,8 +36,8 @@ const ClaimModal: React.FC<CompetitionProps> = ({ onDismiss, onClaimSuccess, use
   const { toastSuccess, toastError } = useToast()
   const { t } = useTranslation()
 
-  const { userRewardGroup, userCakeRewards, userPointReward, canClaimNFT } = userTradingInformation
-  const { cakeReward } = useCompetitionCakeRewards(userCakeRewards)
+  const { userRewardGroup, userDoughRewards, userPointReward, canClaimNFT } = userTradingInformation
+  const { cakeReward } = useCompetitionDoughRewards(userDoughRewards)
   const { champion, teamPlayer } = getRewardGroupAchievements(userRewardGroup)
 
   const handleClaimClick = () => {

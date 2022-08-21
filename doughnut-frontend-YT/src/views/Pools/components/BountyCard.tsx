@@ -16,7 +16,7 @@ import {
 } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useCakeVault, usePriceCakeBusd } from 'state/hooks'
+import { useDoughVault, usePriceDoughBusd } from 'state/hooks'
 import Balance from 'components/Balance'
 import BountyModal from './BountyModal'
 
@@ -31,20 +31,20 @@ const StyledCard = styled(Card)`
 const BountyCard = () => {
   const { t } = useTranslation()
   const {
-    estimatedCakeBountyReward,
-    totalPendingCakeHarvest,
+    estimatedDoughBountyReward,
+    totalPendingDoughHarvest,
     fees: { callFee },
-  } = useCakeVault()
-  const cakePriceBusd = usePriceCakeBusd()
+  } = useDoughVault()
+  const cakePriceBusd = usePriceDoughBusd()
 
   const estimatedDollarBountyReward = useMemo(() => {
-    return new BigNumber(estimatedCakeBountyReward).multipliedBy(cakePriceBusd)
-  }, [cakePriceBusd, estimatedCakeBountyReward])
+    return new BigNumber(estimatedDoughBountyReward).multipliedBy(cakePriceBusd)
+  }, [cakePriceBusd, estimatedDoughBountyReward])
 
   const hasFetchedDollarBounty = estimatedDollarBountyReward.gte(0)
-  const hasFetchedCakeBounty = estimatedCakeBountyReward ? estimatedCakeBountyReward.gte(0) : false
+  const hasFetchedDoughBounty = estimatedDoughBountyReward ? estimatedDoughBountyReward.gte(0) : false
   const dollarBountyToDisplay = hasFetchedDollarBounty ? getBalanceNumber(estimatedDollarBountyReward, 18) : 0
-  const cakeBountyToDisplay = hasFetchedCakeBounty ? getBalanceNumber(estimatedCakeBountyReward, 18) : 0
+  const cakeBountyToDisplay = hasFetchedDoughBounty ? getBalanceNumber(estimatedDoughBountyReward, 18) : 0
 
   const TooltipComponent = () => (
     <>
@@ -64,7 +64,7 @@ const BountyCard = () => {
     <BountyModal
       cakeBountyToDisplay={cakeBountyToDisplay}
       dollarBountyToDisplay={dollarBountyToDisplay}
-      totalPendingCakeHarvest={totalPendingCakeHarvest}
+      totalPendingDoughHarvest={totalPendingDoughHarvest}
       callFee={callFee}
       TooltipComponent={TooltipComponent}
     />,
@@ -93,7 +93,7 @@ const BountyCard = () => {
           <Flex alignItems="center" justifyContent="space-between">
             <Flex flexDirection="column" mr="12px">
               <Heading>
-                {hasFetchedCakeBounty ? (
+                {hasFetchedDoughBounty ? (
                   <Balance fontSize="20px" bold value={cakeBountyToDisplay} decimals={3} />
                 ) : (
                   <Skeleton height={20} width={96} mb="2px" />

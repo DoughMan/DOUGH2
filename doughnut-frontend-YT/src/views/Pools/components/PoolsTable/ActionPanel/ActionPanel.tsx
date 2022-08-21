@@ -15,7 +15,7 @@ import {
 } from '@pancakeswap/uikit'
 import { BASE_URL } from 'config'
 import { getBscScanBlockCountdownUrl } from 'utils/bscscan'
-import { useBlock, useCakeVault } from 'state/hooks'
+import { useBlock, useDoughVault } from 'state/hooks'
 import BigNumber from 'bignumber.js'
 import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
@@ -123,20 +123,20 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const imageSrc = `${BASE_URL}/images/tokens/${earningToken.symbol.toLowerCase()}.png`
 
   const {
-    totalCakeInVault,
+    totalDoughInVault,
     fees: { performanceFee },
-  } = useCakeVault()
+  } = useDoughVault()
 
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
-  const isManualCakePool = sousId === 0
+  const isManualDoughPool = sousId === 0
 
   const getTotalStakedBalance = () => {
     if (isAutoVault) {
-      return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
+      return getBalanceNumber(totalDoughInVault, stakingToken.decimals)
     }
-    if (isManualCakePool) {
-      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalCakeInVault)
-      return getBalanceNumber(manualCakeTotalMinusAutoVault, stakingToken.decimals)
+    if (isManualDoughPool) {
+      const manualDoughTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalDoughInVault)
+      return getBalanceNumber(manualDoughTotalMinusAutoVault, stakingToken.decimals)
     }
     return getBalanceNumber(totalStaked, stakingToken.decimals)
   }

@@ -21,7 +21,7 @@ const PriceLink = styled.a`
   }
 `;
 
-const CakePrice: React.FC<Props> = ({ cakePriceUsd }) => {
+const DoughPrice: React.FC<Props> = ({ cakePriceUsd }) => {
   return cakePriceUsd ? (
     <PriceLink
       href="https://exchange.doughnutswap.shop/#/swap?outputCurrency=0x012b84c2EB8fDb3055605C0A01a3D420382f1fB4"
@@ -35,4 +35,4 @@ const CakePrice: React.FC<Props> = ({ cakePriceUsd }) => {
   );
 };
 
-export default React.memo(CakePrice);
+export default React.memo(DoughPrice);

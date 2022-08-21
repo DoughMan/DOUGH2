@@ -2,7 +2,7 @@
   {
     "inputs": [
       {
-        "internalType": "contract CakeToken",
+        "internalType": "contract DoughToken",
         "name": "_cake",
         "type": "address"
       }
@@ -245,7 +245,7 @@
     "name": "dough",
     "outputs": [
       {
-        "internalType": "contract CakeToken",
+        "internalType": "contract DoughToken",
         "name": "",
         "type": "address"
       }
@@ -590,7 +590,7 @@
         "type": "uint256"
       }
     ],
-    "name": "safeCakeTransfer",
+    "name": "safeDoughTransfer",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

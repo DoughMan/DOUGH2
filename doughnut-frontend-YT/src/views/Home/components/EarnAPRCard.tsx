@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { useAppDispatch } from 'state'
-import { useFarms, usePriceCakeBusd } from 'state/hooks'
+import { useFarms, usePriceDoughBusd } from 'state/hooks'
 import { fetchFarmsPublicDataAsync, nonArchivedFarms } from 'state/farms'
 import { getFarmApr } from 'utils/apr'
 
@@ -32,7 +32,7 @@ const EarnAPRCard = () => {
   const [isFetchingFarmData, setIsFetchingFarmData] = useState(true)
   const { t } = useTranslation()
   const { data: farmsLP } = useFarms()
-  const cakePrice = usePriceCakeBusd()
+  const cakePrice = usePriceDoughBusd()
   const dispatch = useAppDispatch()
 
   // Fetch farm data once to get the max APR

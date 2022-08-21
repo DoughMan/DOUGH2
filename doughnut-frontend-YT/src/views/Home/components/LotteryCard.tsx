@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { Heading, Card, CardBody, Button, useModal } from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
-import { getCakeAddress } from 'utils/addressHelpers'
+import { getDoughAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
 import useGetLotteryHasDrawn from 'hooks/useGetLotteryHasDrawn'
@@ -14,7 +14,7 @@ import { useApproval } from 'hooks/useApproval'
 import PurchaseWarningModal from 'views/Lottery/components/TicketCard/PurchaseWarningModal'
 import BuyTicketModal from 'views/Lottery/components/TicketCard/BuyTicketModal'
 import UnlockButton from 'components/UnlockButton'
-import CakeWinnings from './CakeWinnings'
+import DoughWinnings from './DoughWinnings'
 import LotteryJackpot from './LotteryJackpot'
 
 const StyledLotteryCard = styled(Card)`
@@ -54,7 +54,7 @@ const LotteryCard = () => {
   const [onPresentApprove] = useModal(<PurchaseWarningModal />)
   const { claimAmount, setLastUpdated } = useTotalClaim()
   const { onMultiClaim } = useMultiClaimLottery()
-  const { balance: cakeBalance } = useTokenBalance(getCakeAddress())
+  const { balance: cakeBalance } = useTokenBalance(getDoughAddress())
   const { handleApprove, requestedApproval } = useApproval(onPresentApprove)
 
   const handleClaim = useCallback(async () => {
@@ -100,7 +100,7 @@ const LotteryCard = () => {
         <CardImage src="/images/ticket.svg" alt="dough logo" width={64} height={64} />
         <Block>
           <Label>{t('DOUGH to Collect')}:</Label>
-          <CakeWinnings claimAmount={claimAmount} />
+          <DoughWinnings claimAmount={claimAmount} />
         </Block>
         <Block>
           <Label>{t('Total jackpot this round')}:</Label>

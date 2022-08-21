@@ -4,7 +4,7 @@ import { ethers } from 'ethers'
 import { Pair, TokenAmount, Token } from '@pancakeswap-libs/sdk'
 import { getLpContract, getMasterchefContract } from 'utils/contractHelpers'
 import farms from 'config/constants/farms'
-import { getAddress, getCakeAddress } from 'utils/addressHelpers'
+import { getAddress, getDoughAddress } from 'utils/addressHelpers'
 import tokens from 'config/constants/tokens'
 import pools from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
@@ -135,14 +135,14 @@ const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 const cakeBnbPid = 251
 const cakeBnbFarm = farms.find((farm) => farm.pid === cakeBnbPid)
 
-const CAKE_TOKEN = new Token(chainId, getCakeAddress(), 18)
+const DOUGH_TOKEN = new Token(chainId, getDoughAddress(), 18)
 const WBNB_TOKEN = new Token(chainId, tokens.wbnb.address[chainId], 18)
-const CAKE_BNB_TOKEN = new Token(chainId, getAddress(cakeBnbFarm.lpAddresses), 18)
+const DOUGH_BNB_TOKEN = new Token(chainId, getAddress(cakeBnbFarm.lpAddresses), 18)
 
 /**
  * Returns the total DOUGH staked in the DOUGH-BNB LP
  */
-export const getUserStakeInCakeBnbLp = async (account: string, block?: number) => {
+export const getUserStakeInDoughBnbLp = async (account: string, block?: number) => {
   try {
     const archivedWeb3 = getWeb3WithArchivedNodeProvider()
     const masterContract = getMasterchefContract(archivedWeb3)
@@ -152,13 +152,13 @@ export const getUserStakeInCakeBnbLp = async (account: string, block?: number) =
     const cakeBnbBalance = await masterContract.methods.userInfo(cakeBnbPid, account).call(undefined, block)
 
     const pair: Pair = new Pair(
-      new TokenAmount(CAKE_TOKEN, reservesLP._reserve0.toString()),
+      new TokenAmount(DOUGH_TOKEN, reservesLP._reserve0.toString()),
       new TokenAmount(WBNB_TOKEN, reservesLP._reserve1.toString()),
     )
     const cakeLPBalance = pair.getLiquidityValue(
       pair.token0,
-      new TokenAmount(CAKE_BNB_TOKEN, totalSupplyLP.toString()),
-      new TokenAmount(CAKE_BNB_TOKEN, cakeBnbBalance.amount.toString()),
+      new TokenAmount(DOUGH_BNB_TOKEN, totalSupplyLP.toString()),
+      new TokenAmount(DOUGH_BNB_TOKEN, cakeBnbBalance.amount.toString()),
       false,
     )
 
@@ -172,7 +172,7 @@ export const getUserStakeInCakeBnbLp = async (account: string, block?: number) =
 /**
  * Gets the dough staked in the main pool
  */
-export const getUserStakeInCakePool = async (account: string, block?: number) => {
+export const getUserStakeInDoughPool = async (account: string, block?: number) => {
   try {
     const archivedWeb3 = getWeb3WithArchivedNodeProvider()
     const masterContract = getMasterchefContract(archivedWeb3)

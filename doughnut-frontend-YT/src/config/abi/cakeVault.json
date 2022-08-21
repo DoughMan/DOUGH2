@@ -261,7 +261,7 @@
   },
   {
     "inputs": [],
-    "name": "calculateHarvestCakeRewards",
+    "name": "calculateHarvestDoughRewards",
     "outputs": [
       {
         "internalType": "uint256",
@@ -274,7 +274,7 @@
   },
   {
     "inputs": [],
-    "name": "calculateTotalPendingCakeRewards",
+    "name": "calculateTotalPendingDoughRewards",
     "outputs": [
       {
         "internalType": "uint256",

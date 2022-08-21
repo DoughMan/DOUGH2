@@ -2,19 +2,19 @@ import React from 'react'
 import { Flex, Text } from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
-import { useCakeVault, usePriceCakeBusd } from 'state/hooks'
-import { getCakeVaultEarnings } from 'views/Pools/helpers'
-import RecentCakeProfitBalance from './RecentCakeProfitBalance'
+import { useDoughVault, usePriceDoughBusd } from 'state/hooks'
+import { getDoughVaultEarnings } from 'views/Pools/helpers'
+import RecentDoughProfitBalance from './RecentDoughProfitBalance'
 
-const RecentCakeProfitCountdownRow = () => {
+const RecentDoughProfitCountdownRow = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const {
     pricePerFullShare,
     userData: { cakeAtLastUserAction, userShares, lastUserActionTime },
-  } = useCakeVault()
-  const cakePriceBusd = usePriceCakeBusd()
-  const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
+  } = useDoughVault()
+  const cakePriceBusd = usePriceDoughBusd()
+  const { hasAutoEarnings, autoDoughToDisplay, autoUsdToDisplay } = getDoughVaultEarnings(
     account,
     cakeAtLastUserAction,
     userShares,
@@ -30,8 +30,8 @@ const RecentCakeProfitCountdownRow = () => {
     <Flex alignItems="center" justifyContent="space-between">
       <Text fontSize="14px">{`${t('Recent DOUGH profit')}:`}</Text>
       {hasAutoEarnings && (
-        <RecentCakeProfitBalance
-          cakeToDisplay={autoCakeToDisplay}
+        <RecentDoughProfitBalance
+          cakeToDisplay={autoDoughToDisplay}
           dollarValueToDisplay={autoUsdToDisplay}
           dateStringToDisplay={dateStringToDisplay}
         />
@@ -40,4 +40,4 @@ const RecentCakeProfitCountdownRow = () => {
   )
 }
 
-export default RecentCakeProfitCountdownRow
+export default RecentDoughProfitCountdownRow
